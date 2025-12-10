@@ -1,0 +1,9 @@
+<script setup lang="ts">
+import LayoutShell from './components/LayoutShell.vue'
+</script>
+
+<template>
+  <LayoutShell>
+    <RouterView />
+  </LayoutShell>
+</template>
