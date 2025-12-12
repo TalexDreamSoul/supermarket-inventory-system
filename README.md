@@ -49,8 +49,13 @@ See [Vitesse](https://github.com/antfu/vitesse) for full featureset.
 
 - Configure `.env` with `VITE_API_BASE_URL` (current value: `https://api.sis.tagzxia.com/`) so the frontend knows where to call the backend.
 - New routes `/auth/login` and `/auth/register` let you create accounts and fetch the protected user list using the documented APIs.
+- Login/register pages now swallow API exceptions to avoid Vue "Unhandled error" noise, and display friendlier messages to the user.
 - `/plan` renders the contents of `API_PLAN.md` inside the app to keep implementation progress visible to everyone.
 - `src/services` now contains a lightweight API client plus auth/dashboard service matching the shared API spec.
+
+## Troubleshooting
+
+- Seeing `not a valid bcrypt hash` on login usually means the backend stored an invalid password hash for that user (bad seed / legacy plaintext). Fix it on the backend side by resetting that user's password (rehash) or re-initializing the auth database.
 
 ## Dropped Features from [Vitesse](https://github.com/antfu/vitesse)
 

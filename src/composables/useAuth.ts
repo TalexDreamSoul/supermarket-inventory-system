@@ -13,6 +13,26 @@ function resetMessages() {
   statusMessage.value = null
 }
 
+function normalizeErrorMessage(error: unknown) {
+  if (error instanceof ApiError) {
+    const rawMessage = error.message ?? ''
+    const normalized = rawMessage.trim().toLowerCase()
+
+    if (normalized.includes('invalid credentials'))
+      return '用户名或密码不对。'
+
+    if (normalized.includes('bcrypt') || normalized.includes('hash') || normalized.includes('invalid salt'))
+      return '后端密码数据异常（hash 不合法），重置密码或重置数据库再试。'
+
+    if (error.status === 401 || error.code === 401)
+      return '没权限或者 token 过期了。'
+
+    return rawMessage || '接口自己报错了。'
+  }
+
+  return error instanceof Error ? error.message : '接口又挂了。'
+}
+
 function ensureRole(role: string): role is UserRole {
   return ['admin', 'stock_operator', 'purchaser', 'cashier', 'finance', 'viewer'].includes(role)
 }
@@ -24,8 +44,7 @@ async function execute<T>(operation: () => Promise<T>) {
     return await operation()
   }
   catch (error) {
-    const message = error instanceof Error ? error.message : '接口又挂了。'
-    errorMessage.value = message
+    errorMessage.value = normalizeErrorMessage(error)
     throw error
   }
   finally {

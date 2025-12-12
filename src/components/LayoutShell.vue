@@ -4,9 +4,14 @@ import { useRoute } from 'vue-router'
 
 const navItems = [
   { label: '仪表盘总览', to: '/' },
+  { label: '库存查询', to: '/products' },
+  { label: '库存审计', to: '/audit' },
+  { label: '分类库存', to: '/categories' },
+  { label: '供应商', to: '/suppliers' },
+  { label: '订单管理', to: '/orders' },
   { label: '用户登录', to: '/auth/login' },
   { label: '创建账号', to: '/auth/register' },
-  { label: 'API 工作计划', to: '/plan' },
+  { label: '系统检查', to: '/plan' },
 ]
 
 const backendBaseUrl = import.meta.env.VITE_API_BASE_URL ?? ''
@@ -64,7 +69,7 @@ const route = useRoute()
 
         <section class="mt-auto space-y-2 text-xs text-neutral-500 border-t border-neutral-200 pt-4">
           <p>版本：CMS 黑白 · 设计稿 0.2</p>
-          <p>状态：所有接口以 API 文档为准</p>
+          <p>状态：接口以实际返回为准</p>
         </section>
       </aside>
 

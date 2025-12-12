@@ -17,7 +17,7 @@ const { stats, products, alerts, schedule, loading, errorMessage, refresh } = us
           仪表盘 · 库存状态
         </h1>
         <p class="text-sm text-neutral-500">
-          接口：<code>{{ backendBaseUrl || '未配置' }}</code> · 数据来自 API 定义
+          接口：<code>{{ backendBaseUrl || '未配置' }}</code> · 数据来自后端 API
         </p>
         <p class="text-neutral-600">
           真实 CMS 风格，只保留黑白与留白，方便快速浏览。
@@ -71,7 +71,7 @@ const { stats, products, alerts, schedule, loading, errorMessage, refresh } = us
             </p>
           </div>
           <RouterLink class="text-xs uppercase tracking-[0.3em] text-neutral-500" to="/plan">
-            查看计划
+            系统检查
           </RouterLink>
         </header>
         <div class="overflow-x-auto">
@@ -182,33 +182,43 @@ const { stats, products, alerts, schedule, loading, errorMessage, refresh } = us
           快捷指令
         </p>
       </header>
-      <div class="grid gap-3 md:grid-cols-4">
+      <div class="grid gap-3 md:grid-cols-6">
         <RouterLink
           class="border border-neutral-900 rounded-md text-center py-3 text-sm tracking-[0.3em]"
-          to="/auth/login"
+          to="/products"
         >
-          登录后台
+          库存查询
         </RouterLink>
         <RouterLink
           class="border border-neutral-900 rounded-md text-center py-3 text-sm tracking-[0.3em]"
-          to="/auth/register"
+          to="/audit"
         >
-          注册账号
+          库存审计
+        </RouterLink>
+        <RouterLink
+          class="border border-neutral-900 rounded-md text-center py-3 text-sm tracking-[0.3em]"
+          to="/categories"
+        >
+          分类库存
+        </RouterLink>
+        <RouterLink
+          class="border border-neutral-900 rounded-md text-center py-3 text-sm tracking-[0.3em]"
+          to="/suppliers"
+        >
+          供应商
+        </RouterLink>
+        <RouterLink
+          class="border border-neutral-900 rounded-md text-center py-3 text-sm tracking-[0.3em]"
+          to="/orders"
+        >
+          订单管理
         </RouterLink>
         <RouterLink
           class="border border-neutral-900 rounded-md text-center py-3 text-sm tracking-[0.3em]"
           to="/plan"
         >
-          查看计划
+          系统检查
         </RouterLink>
-        <a
-          class="border border-neutral-900 rounded-md text-center py-3 text-sm tracking-[0.3em]"
-          href="/API_PLAN.md"
-          target="_blank"
-          rel="noreferrer"
-        >
-          打开文档
-        </a>
       </div>
     </section>
   </section>

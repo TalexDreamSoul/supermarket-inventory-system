@@ -26,10 +26,15 @@ const maskedToken = computed(() => {
 })
 
 async function handleLogin() {
-  await login({
-    username: form.username.trim(),
-    password: form.password,
-  })
+  try {
+    await login({
+      username: form.username.trim(),
+      password: form.password,
+    })
+  }
+  catch {
+    // useAuth 已经把 errorMessage 写好了，这里别再把错误往外炸。
+  }
 }
 
 async function loadUsers() {

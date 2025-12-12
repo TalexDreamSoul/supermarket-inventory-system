@@ -128,10 +128,10 @@ declare global {
   const useArrayReduce: typeof import('@vueuse/core')['useArrayReduce']
   const useArraySome: typeof import('@vueuse/core')['useArraySome']
   const useArrayUnique: typeof import('@vueuse/core')['useArrayUnique']
-  const useAuth: typeof import('./src/composables/useAuth')['useAuth']
   const useAsyncQueue: typeof import('@vueuse/core')['useAsyncQueue']
   const useAsyncState: typeof import('@vueuse/core')['useAsyncState']
   const useAttrs: typeof import('vue')['useAttrs']
+  const useAuth: typeof import('./src/composables/useAuth')['useAuth']
   const useBase64: typeof import('@vueuse/core')['useBase64']
   const useBattery: typeof import('@vueuse/core')['useBattery']
   const useBluetooth: typeof import('@vueuse/core')['useBluetooth']
@@ -152,6 +152,7 @@ declare global {
   const useCurrentElement: typeof import('@vueuse/core')['useCurrentElement']
   const useCycleList: typeof import('@vueuse/core')['useCycleList']
   const useDark: typeof import('@vueuse/core')['useDark']
+  const useDashboard: typeof import('./src/composables/useDashboard')['useDashboard']
   const useDateFormat: typeof import('@vueuse/core')['useDateFormat']
   const useDebounce: typeof import('@vueuse/core')['useDebounce']
   const useDebounceFn: typeof import('@vueuse/core')['useDebounceFn']
@@ -304,6 +305,9 @@ declare global {
   // @ts-ignore
   export type { Component, Slot, Slots, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
+  // @ts-ignore
+  export type { DashboardStat, DashboardScheduleItem } from './src/composables/useDashboard'
+  import('./src/composables/useDashboard')
 }
 
 // for vue template auto import
@@ -434,6 +438,7 @@ declare module 'vue' {
     readonly useAsyncQueue: UnwrapRef<typeof import('@vueuse/core')['useAsyncQueue']>
     readonly useAsyncState: UnwrapRef<typeof import('@vueuse/core')['useAsyncState']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>
+    readonly useAuth: UnwrapRef<typeof import('./src/composables/useAuth')['useAuth']>
     readonly useBase64: UnwrapRef<typeof import('@vueuse/core')['useBase64']>
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
     readonly useBluetooth: UnwrapRef<typeof import('@vueuse/core')['useBluetooth']>
@@ -454,6 +459,7 @@ declare module 'vue' {
     readonly useCurrentElement: UnwrapRef<typeof import('@vueuse/core')['useCurrentElement']>
     readonly useCycleList: UnwrapRef<typeof import('@vueuse/core')['useCycleList']>
     readonly useDark: UnwrapRef<typeof import('@vueuse/core')['useDark']>
+    readonly useDashboard: UnwrapRef<typeof import('./src/composables/useDashboard')['useDashboard']>
     readonly useDateFormat: UnwrapRef<typeof import('@vueuse/core')['useDateFormat']>
     readonly useDebounce: UnwrapRef<typeof import('@vueuse/core')['useDebounce']>
     readonly useDebounceFn: UnwrapRef<typeof import('@vueuse/core')['useDebounceFn']>
