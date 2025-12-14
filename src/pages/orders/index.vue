@@ -8,7 +8,7 @@ defineOptions({
   name: 'OrdersPage',
 })
 
-const { token, isAuthenticated } = useAuth()
+const { token } = useAuth()
 
 const filters = reactive({
   keyword: '',
@@ -82,7 +82,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="space-y-6 text-left">
+  <section class="h-full min-h-0 flex flex-col gap-4 text-left">
     <header class="space-y-2">
       <h1 class="text-3xl font-semibold">
         订单管理
@@ -92,16 +92,7 @@ onMounted(() => {
       </p>
     </header>
 
-    <div v-if="!isAuthenticated" class="bg-white border border-neutral-200 rounded-xl p-5">
-      <p class="text-sm text-neutral-600">
-        订单接口需要登录 token。
-      </p>
-      <RouterLink class="inline-block mt-3 text-sm text-neutral-600 underline underline-offset-4" to="/auth/login">
-        去登录
-      </RouterLink>
-    </div>
-
-    <form v-else class="bg-white border border-neutral-200 rounded-xl p-5 space-y-4" @submit.prevent="handleSearch">
+    <form class="bg-white border border-neutral-200 rounded-xl p-5 space-y-4" @submit.prevent="handleSearch">
       <div class="grid gap-3 md:grid-cols-6">
         <label class="space-y-1 md:col-span-2">
           <span class="text-xs uppercase tracking-[0.3em] text-neutral-400">关键字</span>
@@ -192,7 +183,7 @@ onMounted(() => {
       </p>
     </form>
 
-    <article v-if="isAuthenticated" class="bg-white border border-neutral-200 rounded-xl overflow-auto">
+    <article class="flex-1 min-h-0 bg-white border border-neutral-200 rounded-xl overflow-auto">
       <table class="w-full text-sm">
         <thead class="bg-neutral-50 text-xs uppercase tracking-[0.3em] text-neutral-500">
           <tr>
@@ -247,6 +238,6 @@ onMounted(() => {
       </table>
     </article>
 
-    <PaginationBar v-if="isAuthenticated" v-model:page="page" v-model:size="size" :total="total" />
+    <PaginationBar v-model:page="page" v-model:size="size" :total="total" />
   </section>
 </template>

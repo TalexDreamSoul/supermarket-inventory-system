@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import type { UserRole } from '~/services/auth'
 import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
 import { useAuth } from '~/composables/useAuth'
 
 defineOptions({
   name: 'AuthRegisterPage',
 })
 
-const { register, loading, errorMessage, statusMessage } = useAuth()
+const { register, loading, errorMessage, statusMessage, isAuthenticated } = useAuth()
+const router = useRouter()
 
 const roles: UserRole[] = ['admin', 'stock_operator', 'purchaser', 'cashier', 'finance', 'viewer']
 
@@ -24,6 +26,8 @@ async function handleRegister() {
       password: form.password,
       role: form.role,
     })
+    if (!isAuthenticated.value)
+      await router.replace('/auth/login')
   }
   catch {
     // useAuth 已经把 errorMessage 写好了，这里别再把错误往外炸。
@@ -35,11 +39,8 @@ async function handleRegister() {
   <section class="mx-auto text-left max-w-3xl space-y-6">
     <header class="space-y-2">
       <h1 class="text-3xl font-semibold">
-        注册 · 帕神库存管理
+        创建账号
       </h1>
-      <p class="text-sm text-neutral-500">
-        只录入文档中要求的字段，保持账号信息规范。
-      </p>
     </header>
 
     <form class="space-y-5 border border-neutral-200 rounded-xl bg-white px-6 py-6" @submit.prevent="handleRegister">
@@ -97,9 +98,5 @@ async function handleRegister() {
     <p v-if="statusMessage" class="text-neutral-500">
       {{ statusMessage }}
     </p>
-
-    <RouterLink class="text-sm text-neutral-600 underline underline-offset-4" to="/auth/login">
-      已有账号？直接登录
-    </RouterLink>
   </section>
 </template>

@@ -6,6 +6,10 @@ body,
   padding: 0;
 }
 
+body {
+  overflow: hidden;
+}
+
 html.dark {
   color-scheme: dark;
 }

@@ -55,7 +55,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section class="space-y-6 text-left">
+  <section class="h-full min-h-0 flex flex-col gap-4 text-left">
     <header class="space-y-2">
       <h1 class="text-3xl font-semibold">
         供应商
@@ -91,7 +91,7 @@ onMounted(() => {
       </p>
     </form>
 
-    <article class="bg-white border border-neutral-200 rounded-xl overflow-auto">
+    <article class="flex-1 min-h-0 bg-white border border-neutral-200 rounded-xl overflow-auto">
       <table class="w-full text-sm">
         <thead class="bg-neutral-50 text-xs uppercase tracking-[0.3em] text-neutral-500">
           <tr>

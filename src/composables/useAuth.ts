@@ -21,9 +21,6 @@ function normalizeErrorMessage(error: unknown) {
     if (normalized.includes('invalid credentials'))
       return '用户名或密码不对。'
 
-    if (normalized.includes('bcrypt') || normalized.includes('hash') || normalized.includes('invalid salt'))
-      return '后端密码数据异常（hash 不合法），重置密码或重置数据库再试。'
-
     if (error.status === 401 || error.code === 401)
       return '没权限或者 token 过期了。'
 
