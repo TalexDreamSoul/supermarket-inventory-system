@@ -52,7 +52,7 @@
 
 ## 帕神库存管理定制内容
 
-- 配置 `.env` 的 `VITE_API_BASE_URL`，让前端知道后端地址。
+- `VITE_API_BASE_URL` 写在 `.env.development`（`http://localhost:5001/`）和 `.env.production`（`https://api.sis.tagzxia.com/`）里，让前端知道后端地址。
 - 新增 `/auth/login`、`/auth/register` 页面，用于创建账号、登录并验证受保护的用户列表接口。
 - 登录/注册页面已吞掉接口异常，避免控制台刷「未捕获错误」，同时展示更友好的提示信息。
 - `/plan` 页面会在应用内渲染 `API_PLAN.md`，用来同步后端 API 落地进度。
