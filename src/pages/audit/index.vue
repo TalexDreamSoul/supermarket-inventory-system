@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import PaginationBar from '~/components/PaginationBar.vue'
+import { ApiError } from '~/services/api-client'
 import { useAuth } from '~/composables/useAuth'
 import { type StockOperationItem, type StockOperationType, stockService } from '~/services/stock'
 
@@ -8,7 +10,9 @@ defineOptions({
   name: 'StockAuditPage',
 })
 
-const { token, isAuthenticated } = useAuth()
+const route = useRoute()
+const router = useRouter()
+const { token, isAuthenticated, logout } = useAuth()
 
 const filters = reactive({
   keyword: '',
@@ -62,6 +66,12 @@ async function fetchList() {
   catch (error) {
     items.value = []
     total.value = 0
+    if (error instanceof ApiError && (error.status === 401 || error.code === 401)) {
+      errorMessage.value = '登录过期了，重新登录。'
+      logout()
+      router.replace({ path: '/auth/login', query: { redirect: route.fullPath } })
+      return
+    }
     errorMessage.value = error instanceof Error ? error.message : '审计流水拉取失败。'
   }
   finally {
