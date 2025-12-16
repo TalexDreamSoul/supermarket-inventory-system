@@ -12,6 +12,11 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
 })
 
+const configuredTitle = import.meta.env.VITE_APP_TITLE ?? ''
+if (typeof document !== 'undefined') {
+  document.title = configuredTitle
+}
+
 const publicPaths = new Set(['/auth/login', '/auth/register'])
 
 router.beforeEach((to) => {

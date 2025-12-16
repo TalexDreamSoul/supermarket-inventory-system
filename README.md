@@ -48,6 +48,7 @@ See [Vitesse](https://github.com/antfu/vitesse) for full featureset.
 ## 帕神库存管理定制内容
 
 - Set `VITE_API_BASE_URL` in `.env.development` (`http://localhost:5001/`) and `.env.production` (`https://api.sis.tagzxia.com/`) so the frontend knows where to call the backend.
+- Configure `VITE_APP_TITLE` in the same env files to control the browser tab title (`''` when unset keeps the tab blank).
 - New routes `/auth/login` and `/auth/register` let you create accounts and fetch the protected user list using the documented APIs.
 - Login/register pages now swallow API exceptions to avoid Vue "Unhandled error" noise, and display friendlier messages to the user.
 - `/plan` renders the contents of `API_PLAN.md` inside the app to keep implementation progress visible to everyone.
