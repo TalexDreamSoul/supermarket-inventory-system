@@ -53,6 +53,8 @@ See [Vitesse](https://github.com/antfu/vitesse) for full featureset.
 - Login/register pages now swallow API exceptions to avoid Vue "Unhandled error" noise, and display friendlier messages to the user.
 - `/plan` renders the contents of `API_PLAN.md` inside the app to keep implementation progress visible to everyone.
 - `src/services` now contains a lightweight API client plus auth/dashboard service matching the shared API spec.
+- 新增 `productService` 与扩展的 `stockService`，覆盖 `/api/products/*` 及 `/api/stock/*` 的所有 CRUD/库存调整请求，页面直接调用就行。
+- 商品页把创建/编辑/删除/库存操作全打通了，直接用 token 在前端就能调用商品和库存接口完成业务闭环。
 
 ## Troubleshooting
 

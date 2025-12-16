@@ -1,5 +1,6 @@
 import { computed, ref, watch } from 'vue'
-import { dashboardService, type InventoryAlertItem, type InventoryReportOperation, type ProductListItem } from '~/services/dashboard'
+import { dashboardService, type InventoryAlertItem, type InventoryReportOperation } from '~/services/dashboard'
+import { productService, type ProductListItem } from '~/services/products'
 import { useAuth } from './useAuth'
 
 export interface DashboardStat {
@@ -92,7 +93,7 @@ export function useDashboard() {
       const [reportResult, alertResult, productResult] = await Promise.allSettled([
         dashboardService.fetchInventoryReport(today, currentToken),
         dashboardService.fetchInventoryAlerts(currentToken),
-        dashboardService.fetchProducts({ page: 1, size: 5 }),
+        productService.fetchProducts({ page: 1, size: 5 }),
       ])
 
       if (reportResult.status === 'fulfilled') {
