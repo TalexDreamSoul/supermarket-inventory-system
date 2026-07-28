@@ -44,39 +44,6 @@ export interface InventoryReportResponse {
   stock_operations: InventoryReportOperation[]
 }
 
-export interface ProductListItem {
-  product_id: number
-  product_code: string
-  product_name: string
-  category_id?: number
-  category_name?: string
-  supplier_id?: number
-  supplier_name?: string
-  stock?: number
-  min_stock?: number
-  max_stock?: number
-  status?: string
-  updated_at?: string
-}
-
-export interface ProductListResponse {
-  items: ProductListItem[]
-  total: number
-  page: number
-  size: number
-}
-
-type QueryParams = Record<string, string | number | null | undefined>
-
-export type ProductQueryParams = QueryParams & {
-  page?: number
-  size?: number
-  status?: string
-  category_id?: number
-  supplier_id?: number
-  keyword?: string
-}
-
 export const dashboardService = {
   fetchInventoryAlerts(token?: string | null) {
     return apiRequest<InventoryAlertsResponse>('/api/reports/inventory_alerts', {
@@ -89,12 +56,6 @@ export const dashboardService = {
       method: 'GET',
       query: { date },
       token: token ?? undefined,
-    })
-  },
-  fetchProducts(params: ProductQueryParams = {}) {
-    return apiRequest<ProductListResponse>('/api/products', {
-      method: 'GET',
-      query: params,
     })
   },
 }
